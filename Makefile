@@ -1,3 +1,12 @@
+install:
+	npm install
+
+start:
+	npm start
+
+test:
+	npm -s test
+
 compose:
 	docker-compose up --abort-on-container-exit
 
@@ -9,12 +18,6 @@ push-image:
 
 docker-start:
 	docker run -e NODOS_HOST=0.0.0.0 -p 8080:8080 feycot/devops-for-programmers-project-lvl1
-
-start:
-	npm start
-
-test:
-	npm -s test
 
 compose-build:
 	docker-compose build
@@ -32,6 +35,9 @@ compose-restart:
 	docker-compose restart
 
 compose-setup: compose-down compose-build app-setup
+
+app-setup:
+	docker-compose run make install
 
 compose-ci-build:
 	docker-compose -f docker-compose.yml build
