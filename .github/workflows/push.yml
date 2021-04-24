@@ -9,7 +9,7 @@ jobs:
       image: docker/compose:1.29.1
 
     steps:
-      - uses: actions/checkout@2
+      - uses: actions/checkout@1
 
       - name: Run Tests
         run: make compose-ci
