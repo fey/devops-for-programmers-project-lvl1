@@ -1,4 +1,5 @@
 FROM node:14.6
+
 WORKDIR /app
 
 # Важно для кеширования слоев
@@ -9,11 +10,9 @@ RUN npm install
 
 COPY . .
 
+EXPOSE 8080
+
 CMD npm start
-
-FROM node:14.6
-
-WORKDIR /app
 
 
 

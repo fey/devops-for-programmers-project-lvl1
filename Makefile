@@ -1,5 +1,14 @@
 compose:
-	docker-compose up -d --abort-on-container-exit
+	docker-compose up --abort-on-container-exit
+
+build:
+	docker build -f Dockerfile.production -t feycot/devops-for-programmers-project-lvl1 .
+
+push-image:
+	docker push feycot/devops-for-programmers-project-lvl1
+
+docker-start:
+	docker run -e NODOS_HOST=0.0.0.0 -p 8080:8080 feycot/devops-for-programmers-project-lvl1
 
 start:
 	npm start

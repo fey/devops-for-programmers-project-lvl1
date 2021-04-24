@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "jest",
-    "start": "nodos server -h 0.0.0.0",
+    "start": "nodos server",
     "build": "webpack -p"
   },
   "jest": {

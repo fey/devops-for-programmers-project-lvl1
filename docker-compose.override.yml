@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: make start
+    command: nodos server -h 0.0.0.0
     ports:
       - 8080:8080
