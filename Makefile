@@ -1,14 +1,11 @@
-server:
-	npx nodos server
+compose:
+	docker-compose up -d --abort-on-container-exit
+
+start:
+	npm start
 
 test:
 	npm -s test
-
-compose:
-	docker-compose up -d
-
-compose-production:
-	docker-compose --file docker-compose.yml run production
 
 compose-build:
 	docker-compose build
@@ -35,4 +32,4 @@ compose-ci:
 	docker-compose --file docker-compose.yml up --abort-on-container-exit
 
 env-prepare:
-	cp -n .env.populate .env || true
+	cp -n .env.example .env || true

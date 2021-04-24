@@ -3,5 +3,7 @@ services:
   app:
     build:
       context: ./
+      dockerfile: Dockerfile.production
+    command: make test
     volumes:
       - ./:/app
