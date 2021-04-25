@@ -5,3 +5,11 @@ services:
       context: ./
       dockerfile: Dockerfile.production
     command: make test
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
