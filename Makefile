@@ -17,7 +17,7 @@ push-image:
 	docker push feycot/devops-for-programmers-project-lvl1
 
 docker-start:
-	docker run -e NODOS_HOST=0.0.0.0 -p 8080:8080 feycot/devops-for-programmers-project-lvl1
+	docker run -e NODOS_HOST=0.0.0.0 -e NODOS_DB_TYPE=sqljs -p 8080:8080 feycot/devops-for-programmers-project-lvl1
 
 compose-build:
 	docker-compose build
@@ -39,11 +39,9 @@ compose-setup: compose-down compose-build app-setup
 app-setup:
 	docker-compose run make install
 
-compose-ci-build:
-	docker-compose -f docker-compose.yml build
+compose-ci: compose-ci-build compose-ci-test
 
-compose-ci:
-	docker-compose --file docker-compose.yml build
+compose-ci-test:
 	docker-compose --file docker-compose.yml up --abort-on-container-exit
 
 compose-bash:
