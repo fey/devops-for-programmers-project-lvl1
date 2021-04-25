@@ -5,6 +5,8 @@ services:
       context: ./
       dockerfile: Dockerfile.production
     command: make test
+    environment:
+      NODOS_DB_TYPE: sqljs
     depends_on:
       - db
 
