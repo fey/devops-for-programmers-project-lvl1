@@ -37,7 +37,7 @@ jobs:
           image: ${{ env.PRODUCTION_IMAGE_TAG }}
 
       - name: Run Tests
-        run: docker run -it ${{ env.PRODUCTION_IMAGE_TAG }} make test
+        run: docker run ${{ env.PRODUCTION_IMAGE_TAG }} make test
 
   docker:
     needs: tests
