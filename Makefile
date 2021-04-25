@@ -39,9 +39,6 @@ compose-setup: compose-down compose-build app-setup
 app-setup:
 	docker-compose run make install
 
-compose-ci-build:
-	docker-compose -f docker-compose.yml build
-
 compose-ci: compose-ci-build compose-ci-test
 
 compose-ci-test:
