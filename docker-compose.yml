@@ -5,8 +5,8 @@ services:
       context: ./
       dockerfile: Dockerfile.production
     command: ["make", "test"]
-    environment:
-      NODOS_DB_TYPE: sqljs
+      ports:
+      - 8080:8080
     depends_on:
       - db
 
