@@ -16,21 +16,27 @@ jobs:
       - name: Run Build
         run: make compose-ci-build
 
+      - name: Upload image
+        uses: ishworkh/docker-image-artifact-upload@v1
+        with:
+          image: "feycot/devops-for-programmers-project-lvl1:latest"
+
       - uses: actions/upload-artifact@v2
         with:
-          name: build
-          path: ./
+          name: Dockerfile.production
+          path: Dockerfile.production
 
   tests:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - name: Download image
+        uses: ishworkh/docker-image-artifact-download@v1
         with:
-          name: build
+          image: "feycot/devops-for-programmers-project-lvl1:latest"
 
       - name: Run Tests
-        run: make compose-ci-test
+        run: docker run -it feycot/devops-for-programmers-project-lvl1:latest make test
 
   docker:
     needs: tests
@@ -38,7 +44,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: build
+          name: Dockerfile.production
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
