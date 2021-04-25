@@ -42,8 +42,9 @@ app-setup:
 compose-ci-build:
 	docker-compose -f docker-compose.yml build
 
-compose-ci:
-	docker-compose --file docker-compose.yml build
+compose-ci: compose-ci-build compose-ci-test
+
+compose-ci-test:
 	docker-compose --file docker-compose.yml up --abort-on-container-exit
 
 compose-bash:
