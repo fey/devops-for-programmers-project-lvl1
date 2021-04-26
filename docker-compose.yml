@@ -13,7 +13,6 @@ services:
   db:
     image: postgres:13.2-alpine
     environment:
-      POSTGRES_USERNAME: ${NODOS_DB_USERNAME}
-      POSTGRES_PASSWORD: ${NODOS_DB_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: true
     ports:
       - 54321:5432
