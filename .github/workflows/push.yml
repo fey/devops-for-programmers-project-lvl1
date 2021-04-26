@@ -6,7 +6,6 @@ env:
   BUILDKIT_INLINE_CACHE: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
   DOCKER_BUILDKIT: 1
-  PRODUCTION_IMAGE_TAG: feycot/devops-for-programmers-project-lvl1:latest
 
 jobs:
   build:
@@ -15,29 +14,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run Build
-        run: make build
+        run: make compose-ci
 
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: ${{ env.PRODUCTION_IMAGE_TAG }}
-
-  tests:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: ${{ env.PRODUCTION_IMAGE_TAG }}
-
-      - name: Run Tests
-        run: docker run ${{ env.PRODUCTION_IMAGE_TAG }} make test
-
-  docker:
-    needs: tests
-    runs-on: ubuntu-latest
-    steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -52,4 +30,4 @@ jobs:
         with:
           push: true
           file: Dockerfile.production
-          tags: ${{ env.PRODUCTION_IMAGE_TAG }}
+          tags: feycot/devops-for-programmers-project-lvl1:latest
