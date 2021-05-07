@@ -15,6 +15,11 @@ jobs:
 
       - name: Run Build
         run: make compose-ci
+        env:
+          NODOS_DB_TYPE: postgres
+          NODOS_DB_HOSTNAME: db
+          NODOS_DB_USERNAME: postgres
+          NODOS_DB_PASSWORD: postgres
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
