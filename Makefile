@@ -26,7 +26,10 @@ compose-logs:
 	docker-compose logs -f
 
 compose-down:
-	docker-compose down || true
+	docker-compose down --remove-orphans || true
+
+compose-clear:
+	docker-compose down -v --remove-orphans || true
 
 compose-stop:
 	docker-compose stop || true
